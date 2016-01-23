@@ -6,6 +6,9 @@
  * Time: 11:27
  */
 
+/*
+ * Подключение стилей и скриптов к шаблону
+ */
 function blogus_scripts()
 {
   //  css
@@ -16,7 +19,7 @@ function blogus_scripts()
   //  js
 
   wp_enqueue_script( 'blogus-jquery',
-    get_template_directory_uri() . 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
     [ ],
     false, true
   );
@@ -37,3 +40,46 @@ function blogus_scripts()
 }
 
 add_action( 'wp_enqueue_scripts', 'blogus_scripts' );
+
+/*
+ * Регистрация меню
+ */
+register_nav_menus( [
+  'header_menu' => 'Меню в шапке'
+] );
+
+/*
+ * Генерация меню в шапке
+ */
+class Header_Menu_Walker extends Walker_Nav_Menu
+{
+  function start_el( &$output, $item, $depth, $args )
+  {
+    $linkClass = esc_attr( $args->link_class );
+
+    if( $item->current )
+      $linkClass .= ' active';
+
+    // Атрибуты элемента: class="", title="", rel="", target="" и href=""
+    $attributes  = ! empty( $linkClass ) ? ' class="' . $linkClass . '"' : '';
+    $attributes .= ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
+    $attributes .= ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) . '"' : '';
+    $attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) . '"' : '';
+    $attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
+
+    // Ссылка и околоссылочный текст
+    $item_output = $args->before;
+    $item_output .= '<a' . $attributes . '> ';
+    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    $item_output .= '</a>';
+    $item_output .= $args->after;
+
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
+
+  public function end_el( &$output, $item, $depth = 0, $args = array() )
+  {
+    $output .= "";
+  }
+}
+

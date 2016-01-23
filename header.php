@@ -26,10 +26,15 @@
 
 <div class="blog-masthead">
   <div class="container">
-    <nav class="blog-nav">
-      <a class="blog-nav-item active" href="#">Home</a> <a class="blog-nav-item" href="#">New features</a>
-      <a class="blog-nav-item" href="#">Press</a> <a class="blog-nav-item" href="#">New hires</a>
-      <a class="blog-nav-item" href="#">About</a>
-    </nav>
+    <?
+    wp_nav_menu( [
+      'theme_location' => 'header_menu',
+      'container'      => 'nav',
+      'container_class'=> 'blog-nav',
+      'items_wrap' => '%3$s',
+      'link_class' => 'blog-nav-item',
+      'walker'         => new Header_Menu_Walker()
+    ] );
+    ?>
   </div>
 </div>
