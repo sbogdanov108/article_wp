@@ -36,6 +36,13 @@
 # IntelliJ
 /out/
 
+/languages
+/plugins
+/themes/twentyfourteen
+/themes/twentysixteen
+/themes/twentyfifteen
+/themes/index.php
+/index.php
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
