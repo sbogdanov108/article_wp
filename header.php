@@ -27,14 +27,18 @@
 <div class="blog-masthead">
   <div class="container">
     <?
-    wp_nav_menu( [
-      'theme_location' => 'header_menu',
-      'container'      => 'nav',
-      'container_class'=> 'blog-nav',
-      'items_wrap' => '%3$s',
-      'link_class' => 'blog-nav-item',
-      'walker'         => new Header_Menu_Walker()
-    ] );
+      $args = [
+        'fallback_cb'     => '__return_empty_string',
+        'theme_location'  => 'header_menu',
+        'container'       => 'nav',
+        'container_class' => 'blog-nav',
+        'items_wrap'      => '%3$s',
+        'link_class'      => 'blog-nav-item',
+        'walker'          => new Header_Menu_Walker()
+      ];
+
+      if( wp_nav_menu( $args ) === '' )
+        echo '<p>Здесь будет меню</p>';
     ?>
   </div>
 </div>

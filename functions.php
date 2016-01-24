@@ -83,3 +83,20 @@ class Header_Menu_Walker extends Walker_Nav_Menu
   }
 }
 
+/**
+ * Виджеты для боковой колонки
+ */
+function aside_widgets_init()
+{
+  register_sidebar( [
+    'name'          => 'Виджеты для боковой колонки',
+    'id'            => 'aside',
+    'description'   => 'Добавлять сюда :)',
+    'before_widget' => '<div id="%1$s" class="sidebar-module %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h4>',
+    'after_title'   => '</h4>'
+  ] );
+}
+
+add_action( 'widgets_init', 'aside_widgets_init' );
