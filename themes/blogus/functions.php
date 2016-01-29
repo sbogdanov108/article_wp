@@ -100,3 +100,17 @@ function aside_widgets_init()
 }
 
 add_action( 'widgets_init', 'aside_widgets_init' );
+
+/**
+ * Получить окончание слова
+ *
+ * @param $number
+ * @return mixed
+ */
+function get_end_of_word( $number )
+{
+  $cases = [ 2, 0, 1, 1, 1, 2 ];
+  $titles = [ 'комментарий', 'комментария', 'комментариев' ];
+
+  return $titles[ ( $number % 100 > 4 && $number % 100 < 20 ) ? 2 : $cases[ ( $number % 10 < 5 ) ? $number % 10 : 5 ] ];
+}

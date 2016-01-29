@@ -214,3 +214,28 @@ h6, .h6 {
   padding-left : 0;
   list-style   : none;
 }
+
+/*
+ * Comments
+ */
+.comments {
+  margin-top: 40px; }
+
+.comments .comment .comment {
+  margin-left: 40px; }
+
+.comment {
+  margin-top    : 15px;
+  margin-bottom : 15px; }
+
+.comment-form {
+  margin-top : 40px; }
+
+.comment-form textarea {
+  height : 150px; }
+
+.comment-form .help-block code {
+  font-size : 70%; }
+
+.comment-form .star {
+  color : #c7254e; }

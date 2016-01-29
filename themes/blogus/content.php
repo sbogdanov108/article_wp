@@ -16,7 +16,11 @@
 
   <? $content = get_the_content() ?>
   <? if( is_single() ) : ?>
-      <? the_content() ?>
+    <? the_content() ?>
+
+    <? if ( comments_open() ) : ?>
+      <? comments_template() ?>
+    <? endif ?>
   <? else : ?>
     <?= wp_trim_words( $content, 80 ) ?>
     <br>
